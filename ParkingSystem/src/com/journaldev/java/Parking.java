@@ -25,77 +25,86 @@ public class Parking {
 		//kur arciausia petrol/diesel?
 		
 		int Suggest;
-		if (floor[CarFloor+2]!=0)
+		if (CarType==1)
 		{
-			System.out.println("Galite statytis " + CarFloor + " aukste");
-		}
-		else
-		{
-			boolean up=false, down=false;
-			int j=0;
-			while ((up==false && down==false) && j<=10)
+			if (floor[CarFloor+2]!=0)
 			{
-				j++;
-				if (CarFloor+j+2<11)
+				System.out.println("Galite statytis " + CarFloor + " aukste");
+			}
+			else
+			{
+				boolean up=false, down=false;
+				int j=0;
+				while ((up==false && down==false) && j<=10)
 				{
-					if (floor[CarFloor+j+2]!=0)
+					j++;
+					if (CarFloor+j+2<11)
 					{
-						up=true;
+						if (floor[CarFloor+j+2]!=0)
+						{
+							up=true;
+						}
+					}
+					if (CarFloor-j+2>=0)
+					{
+						if (floor[CarFloor-j+2]!=0)
+						{
+							down=true;
+						}
 					}
 				}
-				if (CarFloor-j+2>=0)
+				if (up == false && down == false)
 				{
-					if (floor[CarFloor-j+2]!=0)
-					{
-						down=true;
-					}
+					System.out.println("Automobiliu aikstele pilna");
 				}
-			}
-			if (up == false && down == false)
-			{
-				System.out.println("Automobiliu aikstele pilna");
-			}
-			else if (up == true && down == true)
-			{
-				Suggest= CarFloor+j;
-				System.out.println("Galite statytis " + Suggest);
-				Suggest= CarFloor-j;
-				System.out.println("arba " + Suggest + " aukste");
-			}
-			else {
-				if (up==true)
+				else if (up == true && down == true)
 				{
 					Suggest= CarFloor+j;
-					System.out.println("Galite statytis " + Suggest + " aukste");
-				}
-				else 
-				{
+					System.out.println("Galite statytis " + Suggest);
 					Suggest= CarFloor-j;
-					System.out.println("Galite statytis " + Suggest + " aukste");
+					System.out.println("arba " + Suggest + " aukste");
+				}
+				else {
+					if (up==true)
+					{
+						Suggest= CarFloor+j;
+						System.out.println("Galite statytis " + Suggest + " aukste");
+					}
+					else 
+					{
+						Suggest= CarFloor-j;
+						System.out.println("Galite statytis " + Suggest + " aukste");
+					}
 				}
 			}
 		}
 		
 		//kur arciau van
-		if((CarFloor!=0 && floor[1]!=0)) //gali statytis -1 aukste
+		else if (CarType==2)
 		{
-			System.out.println("Galite statytis -1 aukste");
+			if((CarFloor!=0 && floor[1]!=0)) //gali statytis -1 aukste
+			{
+				System.out.println("Galite statytis -1 aukste");
+			}
+			else if (floor[0]!=0) //gali statytis -2 aukste
+			{
+				System.out.println("Galite statytis -2 aukste");
+			}
+			else System.out.println("Automobiliu aikstele pilna");
 		}
-		else if (floor[0]!=0) //gali statytis -2 aukste
-		{
-			System.out.println("Galite statytis -2 aukste");
-		}
-		else System.out.println("Automobiliu aikstele pilna");
 		
 		//kur arciau electric
-		if((CarFloor!=8 && floor[9]!=0)) //gali statytis 7 aukste
+		else
 		{
-			System.out.println("Galite statytis 7 aukste");
+			if((CarFloor!=8 && floor[9]!=0)) //gali statytis 7 aukste
+			{
+				System.out.println("Galite statytis 7 aukste");
+			}
+			else if (floor[10]!=0) //gali statytis 8 aukste
+			{
+				System.out.println("Galite statytis 8 aukste");
+			}
+			else System.out.println("Automobiliu aikstele pilna");
 		}
-		else if (floor[10]!=0) //gali statytis 8 aukste
-		{
-			System.out.println("Galite statytis 8 aukste");
-		}
-		else System.out.println("Automobiliu aikstele pilna");		
 	}
 }
